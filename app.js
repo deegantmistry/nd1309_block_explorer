@@ -11,8 +11,17 @@ const be = require('blockexplorer');
  * 
  */
 function getBlock(index) {
-  	//add your code here
-  	
+	//add your code here
+	be.blockIndex(index)
+	.then((blockHashJson) => {
+		let blockHash = JSON.parse(blockHashJson).blockHash;
+		be.block(blockHash).then((result) => {
+			console.log(result);
+		})
+  	})
+  	.catch((err) => {
+    	throw err
+	})
 }
 
 /**
